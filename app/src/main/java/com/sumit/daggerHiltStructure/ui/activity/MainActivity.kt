@@ -1,4 +1,4 @@
-package com.sumit.daggerHiltStructure.ui.actvity
+package com.sumit.daggerHiltStructure.ui.activity
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.sumit.daggerHiltStructure.ui.actvity
+package com.sumit.daggerHiltStructure.ui.activity
 
 import android.os.Bundle
 import android.widget.Toast
