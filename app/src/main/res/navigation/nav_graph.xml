@@ -25,6 +25,9 @@
             <argument
                 android:name="user_phone"
                 app:argType="string" />
+            <argument
+                android:name="user_web"
+                app:argType="string" />
         </action>
 
         <action

@@ -39,9 +39,11 @@ class AddUserFragment : Fragment() {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val phone = binding.etPhone.text.toString()
+            val website = binding.etWeb.text.toString()
 
             if (name.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty()) {
-                val newUser = User(id = 0, name = name, email = email, phone = phone)
+                val newUser =
+                    User(id = 0, name = name, email = email, phone = phone, website = website)
                 viewModel.addUser(newUser)
                 findNavController().popBackStack()
             } else {

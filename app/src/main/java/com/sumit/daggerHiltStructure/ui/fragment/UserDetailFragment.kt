@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,10 +34,12 @@ class UserDetailFragment : Fragment() {
         val userName = arguments?.getString("user_name") ?: ""
         val userEmail = arguments?.getString("user_email") ?: ""
         val userPhone = arguments?.getString("user_phone") ?: ""
+        val userWeb = arguments?.getString("user_web") ?: ""
 
         binding.etName.setText(userName)
         binding.etEmail.setText(userEmail)
         binding.etPhone.setText(userPhone)
+        binding.etWebsite.setText(userWeb)
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().popBackStack()
@@ -49,16 +50,15 @@ class UserDetailFragment : Fragment() {
                 id = userId,
                 name = binding.etName.text.toString(),
                 email = binding.etEmail.text.toString(),
-                phone = binding.etPhone.text.toString()
+                phone = binding.etPhone.text.toString(),
+                website = binding.etWebsite.text.toString()
             )
             viewModel.updateUser(updatedUser)
-            Toast.makeText(context, "User Updated", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
 
         binding.btnDelete.setOnClickListener {
-            viewModel.deleteUser(User(id = userId, name = "", email = "", phone = ""))
-            Toast.makeText(context, "User Deleted", Toast.LENGTH_SHORT).show()
+            viewModel.deleteUser(User(id = userId, name = "", email = "", phone = "", website = ""))
             findNavController().popBackStack()
         }
     }

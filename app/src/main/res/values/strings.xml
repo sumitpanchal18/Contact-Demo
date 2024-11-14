@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Contact</string>
-    <string name="add_user">Add User</string>
+    <string name="add_user">Add Contact</string>
     <string name="fetch_api_data">Fetch API Data</string>
     <string name="contact_list">Contact List</string>
     <string name="enter_phone">Enter Phone</string>
@@ -13,4 +13,6 @@
     <string name="delete_contact">Delete Contact</string>
     <string name="contact">Contact</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_website">Enter Website</string>
+    <string name="website">Website</string>
 </resources>

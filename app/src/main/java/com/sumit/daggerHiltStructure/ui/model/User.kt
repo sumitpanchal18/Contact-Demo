@@ -10,5 +10,6 @@ data class User(
     val id: Long = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "email") val email: String,
-    @ColumnInfo(name = "phone") val phone: String
+    @ColumnInfo(name = "phone") val phone: String,
+    @ColumnInfo(name = "website") val website: String
 )

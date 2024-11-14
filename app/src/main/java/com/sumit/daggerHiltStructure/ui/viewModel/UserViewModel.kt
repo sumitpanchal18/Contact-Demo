@@ -1,5 +1,6 @@
 package com.sumit.daggerHiltStructure.ui.viewModel
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -38,7 +39,11 @@ class UserViewModel @Inject constructor(
 
     fun deleteUser(user: User) {
         viewModelScope.launch {
-            repository.deleteUser(user)
+            try {
+                repository.deleteUser(user)
+            } catch (e: Exception) {
+                Log.e("UserViewModel", "Error deleting user: ${e.message}")
+            }
         }
     }
 
@@ -57,7 +62,7 @@ class UserViewModel @Inject constructor(
             try {
                 repository.refreshUsers()
             } catch (e: Exception) {
-                // Handle error
+                Log.d(TAG, "Failed to refresh users")
             }
         }
     }

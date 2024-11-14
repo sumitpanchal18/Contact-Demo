@@ -41,5 +41,16 @@
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/tvWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/website"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -39,30 +39,21 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun deleteUser(user: User) {
-        userDao.deleteUser(user)
+        try {
+            userDao.deleteUser(user)
+            Log.d("UserRepository", "User deleted and ID stored: ${user.id}")
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Error deleting user: ${e.message}")
+        }
         deletedUserIds.add(user.id)
         saveDeletedUserIds()
-        Log.d("UserRepository", "User deleted and ID stored: ${user.id}")
     }
 
     suspend fun deleteAllUsers() {
         try {
-            val currentUsers = userDao.getAllUsers().first()
-            currentUsers.forEach { user ->
-                deletedUserIds.add(user.id)
-            }
-            saveDeletedUserIds()
             userDao.deleteAllUsers()
         } catch (e: Exception) {
             Log.e("UserRepository", "Error deleting all users: ${e.message}")
-        }
-    }
-
-    private fun saveDeletedUserIds() {
-        val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        prefs.edit().apply {
-            putStringSet("deleted_user_ids", deletedUserIds.map { it.toString() }.toSet())
-            apply()
         }
     }
 
@@ -79,14 +70,6 @@ class UserRepository @Inject constructor(
             val usersToRestore = users.filter { apiUser ->
                 val shouldRestore = deletedUserIds.contains(apiUser.id) &&
                         existingUsers.none { dbUser -> dbUser.id == apiUser.id }
-
-                Log.d(
-                    "UserRepository",
-                    "Checking user ${apiUser.id}: " +
-                            "in deletedIds=${deletedUserIds.contains(apiUser.id)}, " +
-                            "not in DB=${existingUsers.none { it.id == apiUser.id }}"
-                )
-
                 shouldRestore
             }
 
@@ -96,8 +79,6 @@ class UserRepository @Inject constructor(
 
                 deletedUserIds.removeAll(usersToRestore.map { it.id }.toSet())
                 saveDeletedUserIds()
-
-                Log.d("UserRepository", "Users restored. Remaining deleted IDs: $deletedUserIds")
             } else {
                 Log.d("UserRepository", "No users to restore")
             }
@@ -116,6 +97,14 @@ class UserRepository @Inject constructor(
         }
     }
 
+    private fun saveDeletedUserIds() {
+        val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putStringSet("deleted_user_ids", deletedUserIds.map { it.toString() }.toSet())
+            apply()
+        }
+    }
+
     private fun loadDeletedUserIds() {
         val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val savedIds = prefs.getStringSet("deleted_user_ids", emptySet()) ?: emptySet()
@@ -124,7 +113,5 @@ class UserRepository @Inject constructor(
         Log.d("UserRepository", "Loaded deleted IDs: $deletedUserIds")
     }
 
-    private fun List<User>.none(predicate: (User) -> Boolean): Boolean {
-        return !any(predicate)
-    }
+
 }

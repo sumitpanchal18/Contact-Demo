@@ -22,6 +22,7 @@ class UserAdapter(
                 tvName.text = "Name : ${user.name}"
                 tvEmail.text = "Email : ${user.email}"
                 tvPhone.text = "Mobile No : ${user.phone}"
+                tvWeb.text = "Website : ${user.website}"
 
                 root.setOnClickListener {
                     onItemClick(user)
