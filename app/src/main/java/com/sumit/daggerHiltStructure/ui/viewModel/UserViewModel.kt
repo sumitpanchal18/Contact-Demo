@@ -38,11 +38,7 @@ class UserViewModel @Inject constructor(
 
     fun deleteUser(user: User) {
         viewModelScope.launch {
-            try {
-                repository.deleteUser(user)
-            } catch (e: Exception) {
-                Log.e("UserViewModel", "Error deleting user: ${e.message}")
-            }
+            repository.deleteUser(user)
         }
     }
 
@@ -55,7 +51,8 @@ class UserViewModel @Inject constructor(
             }
         }
     }
-     fun refreshUsers() {
+
+    fun refreshUsers() {
         viewModelScope.launch {
             try {
                 repository.refreshUsers()
@@ -64,6 +61,7 @@ class UserViewModel @Inject constructor(
             }
         }
     }
+
     fun fetchDeletedUsers() {
         viewModelScope.launch {
             try {

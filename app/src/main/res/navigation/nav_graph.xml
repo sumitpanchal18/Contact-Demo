@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.sumit.daggerHiltStructure.ui.fragment.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_dashboardFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment">
+            <argument
+                android:name="user_id"
+                app:argType="long" />
+            <argument
+                android:name="user_name"
+                app:argType="string" />
+            <argument
+                android:name="user_email"
+                app:argType="string" />
+            <argument
+                android:name="user_phone"
+                app:argType="string" />
+        </action>
+
+        <action
+            android:id="@+id/action_dashboardFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.sumit.daggerHiltStructure.ui.fragment.UserDetailFragment"
+        android:label="User Detail"
+        tools:layout="@layout/fragment_user_detail" />
+
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="com.sumit.daggerHiltStructure.ui.fragment.AddUserFragment"
+        android:label="Add User"
+        tools:layout="@layout/fragment_add_user" />
+</navigation>

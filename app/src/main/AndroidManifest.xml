@@ -16,13 +16,10 @@
         android:theme="@style/Base.Theme.DragerHill"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.AddUserActivity"
+            android:name=".ui.activity.DashBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.UserDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -46,7 +47,6 @@ android {
         dataBinding = true
     }
 }
-
 dependencies {
 
     // AndroidX Core libraries
@@ -56,6 +56,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.activity:activity:1.9.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
 
     // Testing Libraries
     testImplementation("junit:junit:4.13.2")
@@ -73,9 +76,9 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.3")
 
     // Retrofit Dependencies
-    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // Lifecycle Components
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
@@ -83,12 +86,8 @@ dependencies {
 
     // Room Database dependencies
     implementation("androidx.room:room-runtime:2.6.1")  // Room runtime
-    kapt("androidx.room:room-compiler:2.6.1")
-// Room compiler for annotation processing
+    kapt("androidx.room:room-compiler:2.6.1") // Room compiler for annotation processing
 
     // Optional: If you want to use Room with Coroutines
     implementation("androidx.room:room-ktx:2.6.1")
-
-    // Optional, Hilt ViewModel integration
-//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0")
 }

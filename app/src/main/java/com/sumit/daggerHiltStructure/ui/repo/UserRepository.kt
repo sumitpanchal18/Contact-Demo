@@ -39,14 +39,10 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun deleteUser(user: User) {
-        try {
-            userDao.deleteUser(user)
-            deletedUserIds.add(user.id)
-            saveDeletedUserIds()
-            Log.d("UserRepository", "User deleted and ID stored: ${user.id}")
-        } catch (e: Exception) {
-            Log.e("UserRepository", "Error deleting user: ${e.message}")
-        }
+        userDao.deleteUser(user)
+        deletedUserIds.add(user.id)
+        saveDeletedUserIds()
+        Log.d("UserRepository", "User deleted and ID stored: ${user.id}")
     }
 
     suspend fun deleteAllUsers() {
@@ -59,6 +55,14 @@ class UserRepository @Inject constructor(
             userDao.deleteAllUsers()
         } catch (e: Exception) {
             Log.e("UserRepository", "Error deleting all users: ${e.message}")
+        }
+    }
+
+    private fun saveDeletedUserIds() {
+        val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putStringSet("deleted_user_ids", deletedUserIds.map { it.toString() }.toSet())
+            apply()
         }
     }
 
@@ -76,7 +80,8 @@ class UserRepository @Inject constructor(
                 val shouldRestore = deletedUserIds.contains(apiUser.id) &&
                         existingUsers.none { dbUser -> dbUser.id == apiUser.id }
 
-                Log.d("UserRepository",
+                Log.d(
+                    "UserRepository",
                     "Checking user ${apiUser.id}: " +
                             "in deletedIds=${deletedUserIds.contains(apiUser.id)}, " +
                             "not in DB=${existingUsers.none { it.id == apiUser.id }}"
@@ -101,19 +106,13 @@ class UserRepository @Inject constructor(
             throw e
         }
     }
+
     suspend fun refreshUsers() {
         try {
             val users = apiService.getUsers()
             userDao.insertUsers(users)
         } catch (e: Exception) {
             throw e
-        }
-    }
-    private fun saveDeletedUserIds() {
-        val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        prefs.edit().apply {
-            putStringSet("deleted_user_ids", deletedUserIds.map { it.toString() }.toSet())
-            apply()
         }
     }
 
