@@ -15,9 +15,14 @@ class SplashScreen : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
+        window.decorView.systemUiVisibility =
+            android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+
         Handler().postDelayed(
             {
-                startActivity(Intent(this, DashBoardActivity::class.java))
+                startActivity(Intent(this@SplashScreen, MainActivity::class.java))
                 finish()
             }, 5000
         )

@@ -31,7 +31,6 @@ object DatabaseModule {
         return database.userDao()
     }
 
-
     @Provides
     @Singleton
     fun provideUserRepository(

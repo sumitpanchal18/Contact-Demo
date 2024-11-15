@@ -1,6 +1,7 @@
 package com.sumit.daggerHiltStructure.modules
 
 import com.sumit.daggerHiltStructure.network.ApiService
+import com.sumit.daggerHiltStructure.utils.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

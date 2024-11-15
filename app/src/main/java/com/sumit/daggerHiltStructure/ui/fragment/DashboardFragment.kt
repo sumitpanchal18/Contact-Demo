@@ -1,7 +1,9 @@
 package com.sumit.daggerHiltStructure.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,18 +18,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
+class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private val viewModel: UserViewModel by viewModels()
     private val userAdapter = UserAdapter(
-        onItemClick = { user -> navigateToUserDetail(user) }
+        onItemClick = {
+            navigateToUserDetail(it)
+        }
     )
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding = FragmentDashboardBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         setupRecyclerView()
         setupObservers()
@@ -39,6 +43,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         binding.fabAddUser.setOnClickListener {
             navigateToAddUserFragment()
         }
+        return binding.root
     }
 
     private fun setupRecyclerView() {
