@@ -27,6 +27,7 @@ class DashboardFragment : Fragment() {
             navigateToUserDetail(it)
         }
     )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
