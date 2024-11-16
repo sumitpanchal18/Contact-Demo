@@ -57,10 +57,10 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun refreshUsers() {
+    fun apiUsersDataFetch() {
         viewModelScope.launch {
             try {
-                repository.refreshUsers()
+                repository.apiUsersData()
             } catch (e: Exception) {
                 Log.d(TAG, "Failed to refresh users")
             }

@@ -88,7 +88,7 @@ class UserRepository @Inject constructor(
         }
     }
 
-    suspend fun refreshUsers() {
+    suspend fun apiUsersData() {
         try {
             val users = apiService.getUsers()
             userDao.insertUsers(users)

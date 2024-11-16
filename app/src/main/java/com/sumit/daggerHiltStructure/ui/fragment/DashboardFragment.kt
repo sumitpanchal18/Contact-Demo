@@ -48,7 +48,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        viewModel.refreshUsers()
+        viewModel.apiUsersDataFetch()
         binding.recyclerView.apply {
             adapter = userAdapter
             layoutManager = LinearLayoutManager(requireContext())
