@@ -1,14 +1,17 @@
 package com.sumit.daggerHiltStructure.ui.fragment
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sumit.daggerHiltStructure.R
 import com.sumit.daggerHiltStructure.databinding.FragmentDashboardBinding
 import com.sumit.daggerHiltStructure.ui.adapter.UserAdapter
@@ -47,11 +50,19 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_add)
+        drawable?.mutate()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        binding.fabAddUser.setImageDrawable(drawable)
+
+    }
+
     private fun setupRecyclerView() {
         viewModel.apiUsersDataFetch()
         binding.recyclerView.apply {
             adapter = userAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(), 1)
         }
     }
 

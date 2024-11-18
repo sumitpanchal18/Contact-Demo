@@ -17,14 +17,14 @@ class SplashScreen : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        window.decorView.systemUiVisibility =
-            android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+//        window.decorView.systemUiVisibility =
+//            android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 
         Handler().postDelayed(
             {
                 startActivity(Intent(this@SplashScreen, MainActivity::class.java))
                 finish()
-            }, 5000
+            }, 2000
         )
     }
 }

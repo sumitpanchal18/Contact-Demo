@@ -109,6 +109,7 @@ class UserRepository @Inject constructor(
         val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val savedIds = prefs.getStringSet("deleted_user_ids", emptySet()) ?: emptySet()
         deletedUserIds.clear()
+        Log.d("UserRepository", "Loaded deleted IDs: $deletedUserIds")
         deletedUserIds.addAll(savedIds.map { it.toLong() })
         Log.d("UserRepository", "Loaded deleted IDs: $deletedUserIds")
     }

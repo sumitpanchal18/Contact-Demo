@@ -41,7 +41,7 @@ class AddUserFragment : Fragment() {
             val phone = binding.etPhone.text.toString()
             val website = binding.etWeb.text.toString()
 
-            if (name.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty()) {
+            if (name.isNotEmpty() && phone.isNotEmpty()) {
                 val newUser =
                     User(id = 0, name = name, email = email, phone = phone, website = website)
                 viewModel.addUser(newUser)
