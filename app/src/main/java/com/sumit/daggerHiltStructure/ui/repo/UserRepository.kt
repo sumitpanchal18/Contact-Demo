@@ -1,5 +1,6 @@
 package com.sumit.daggerHiltStructure.ui.repo
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import com.sumit.daggerHiltStructure.network.ApiService
@@ -72,11 +73,10 @@ class UserRepository @Inject constructor(
                         existingUsers.none { dbUser -> dbUser.id == apiUser.id }
                 shouldRestore
             }
+            Log.d(TAG, "User To Restore (${usersToRestore.size}) : $usersToRestore")
 
             if (usersToRestore.isNotEmpty()) {
-                Log.d("UserRepository", "Found ${usersToRestore.size} users to restore")
                 userDao.insertUsers(usersToRestore)
-
                 deletedUserIds.removeAll(usersToRestore.map { it.id }.toSet())
                 saveDeletedUserIds()
             } else {
