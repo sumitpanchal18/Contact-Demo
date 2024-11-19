@@ -35,8 +35,8 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:importantForAccessibility="yes" />
+                android:importantForAccessibility="yes"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -51,10 +51,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:importantForAccessibility="yes"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +82,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:hint="@string/enter_website"
-            app:boxStrokeColor="#1838BC"
             app:boxStrokeErrorColor="#FF0000">
 
             <com.google.android.material.textfield.TextInputEditText
