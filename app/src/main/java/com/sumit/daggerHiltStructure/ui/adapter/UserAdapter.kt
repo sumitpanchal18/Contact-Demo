@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sumit.daggerHiltStructure.databinding.ItemUserBinding
+import com.sumit.daggerHiltStructure.databinding.RawItemUserBinding
 import com.sumit.daggerHiltStructure.ui.model.User
 
 class UserAdapter(
     private val onItemClick: (User) -> Unit
 ) : ListAdapter<User, UserAdapter.UserViewHolder>(UserDiffCallback()) {
 
-    class UserViewHolder(private val binding: ItemUserBinding) :
+    class UserViewHolder(private val binding: RawItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -32,7 +32,7 @@ class UserAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RawItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserViewHolder(binding)
     }
 
